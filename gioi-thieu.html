@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - KCGAMES</title>
+    <link rel="icon" type="image/png" href="/Image/logo-Photoroom.png">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/gioi-thieu.css">
+</head>
+
+<body>
+    <div id="header_gioi_thieu"></div>
+
+    <img id="main_page" src="/Image/draw-3583548_1280.png" alt="">
+
+    <section id="section-gioithieu">
+        <div id="section-content">
+            <p style="font-size: 40px;margin-bottom: 10px;font-weight: 600;"> Chúng tôi là ai</p>
+            <br>
+            <p><strong>KCGAMES</strong> là một studio game mobile mới thành lập tại Việt Nam vào năm 2025, với đội ngũ
+                sáng lập
+                trẻ trung, đầy nhiệt huyết và giàu kinh nghiệhrm trong lĩnh vực phát triển game. Studio sở hữu đam mê
+                cháy
+                bỏng trong việc sáng tạo ra những trò chơi di động chất lượng cao, mang đến cho người chơi những trải
+                nghiệm giải trí độc đáo và thú vị.
+                <br>
+                Mặc dù mới thành lập, <strong>KCGAMES</strong> đã nhanh chóng khẳng định vị thế của mình trên thị trường
+                game
+                mobile Việt Nam với những sản phẩm đầu tay ấn tượng. <strong>KCGAMES</strong> sở hữu đội ngũ sáng lập
+                gồm những
+                cá nhân dày dặn kinh nghiệm trong lĩnh vực phát triển game, từng tham gia vào nhiều dự án game thành
+                công. Nhờ vậy, studio luôn có những ý tưởng sáng tạo và đột phá cho các sản phẩm của mình.
+                <br>
+                Với định hướng phát triển bền vững, <strong>KCGAMES</strong> luôn chú trọng vào việc đầu tư vào công
+                nghệ, sáng
+                tạo nội dung và xây dựng đội ngũ nhân viên chuyên nghiệp. Studio đặt mục tiêu trở thành một trong những
+                nhà phát triển game mobile hàng đầu Việt Nam trong tương lai, mang đến cho người chơi những sản phẩm
+                game chất lượng cao, đáp ứng mọi nhu cầu giải trí.
+            </p>
+        </div>
+        <img src="/Image/muctieu-2.png" alt="">
+    </section>
+
+    <section>
+        <div id="section-tuyen-ngon">
+            <div id="section-content">
+                <h2>TUYÊN NGÔN SỨ MỆNH</h2>
+                <div id="main-tuyen-ngon">
+                    <div id="col-inner">
+                        <div class="item-center">
+                            <img src="/Image/a.png" alt="">
+                            <div id="text-box">
+                                <p>Mục tiêu</p>
+                                <p>Trong vòng 2 năm tới chúng tôi sẽ lọt vào top 10 nhà phát hành trò chơi hàng đầu trên
+                                    toàn
+                                    thế giới.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="col-inner">
+                        <div class="item-center">
+                            <img src="/Image/b.png" alt="">
+                            <div id="text-box">
+                                <p>Tầm nhìn</p>
+                                <p>Nâng tầm ngành công nghiệp game mobile bằng những sản phẩm sáng tạo và đột phá.</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="col-inner">
+                        <div class="item-center">
+                            <img src="/Image/c.png" alt="">
+                            <div id="text-box">
+                                <p>Sứ mệnh</p>
+                                <p>Phát triển và phát hành những game mobile chất lượng cao, mang đến niềm vui và sự
+                                    giải
+                                    trí
+                                    cho người chơi.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="section-thanhvien">
+        <h2>THÀNH VIÊN</h2>
+        <div id="section-content-thanhvien">
+            <div id="col-inner-thanhvien">
+                <img src="/Image/avatar-trang-4.png" alt="">
+                <div id="box-text-info">
+                    <h4>Tên</h4>
+                    <p>Vị trí làm việc</p>
+                </div>
+            </div>
+            <div id="col-inner-thanhvien">
+                <img src="/Image/avatar-trang-4.png" alt="">
+                <div id="box-text-info">
+                    <h4>Tên</h4>
+                    <p>Vị trí làm việc</p>
+                </div>
+            </div>
+            <div id="col-inner-thanhvien">
+                <img src="/Image/avatar-trang-4.png" alt="">
+                <div id="box-text-info">
+                    <h4>Tên</h4>
+                    <p>Vị trí làm việc</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script>
+        async function loadHTML(url, containerId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+                }
+                const htmlContent = await response.text();
+                document.getElementById(containerId).innerHTML = htmlContent;
+            } catch (error) {
+                console.error("Error loading HTML:", error);
+            }
+        }
+
+        loadHTML('./html/client/header.html', 'header_gioi_thieu');
+        loadHTML('./html/client/footer.html', 'footer_gioi_thieu');
+    </script>
+    <div id="footer_gioi_thieu"></div>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyển dụng - KCGAMES</title>
+    <link rel="icon" type="image/png" href="/Image/logo-Photoroom.png">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/tuyendung.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <div id="header_tuyendung"></div>
+
+
+    <img id="main_page" src="/Image/backgound-tuyendung.png" alt="">
+
+    <section id="section-tuyendung">
+        <div id="section-conten-tuyendung">
+            <div id="text-head-tuyendung">
+                <h2>TUYỂN DỤNG</h2>
+                <P>Gia nhập cùng chúng tôi, hãy cùng tạo nên những tựa Game Mobile đầy màu sắc</P>
+            </div>
+            <div id="section-conten-tuyendung2">
+                <div id="col-inner-tuyendung">
+                    <a href="/gamedesigne.html"><img src="/Image/tuyendung.png" alt=""></a>
+                    <div id="text-box-tuyendung">
+                        <h2>𝐆𝐚𝐦𝐞 𝐃𝐞𝐬𝐢𝐠𝐧𝐞(𝐅𝐫𝐞𝐬𝐡𝐞𝐫-𝐉𝐮𝐧𝐢𝐨𝐫)</h2>
+                        <p>Mô tả chi tiết</p>
+                    </div>
+
+                </div>
+                <div id="col-inner-tuyendung">
+                    <a href="/unitydevelop.html"><img src="/Image/tuyendung.png" alt=""></a>
+                    <div id="text-box-tuyendung">
+                        <h2>𝐔𝐧𝐢𝐭𝐲 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫 (𝐉𝐮𝐧𝐢𝐨𝐫-𝐒𝐞𝐧𝐢𝐨𝐫)</h2>
+                        <p>Mô tả chi tiết</p>
+                    </div>
+
+                </div>
+                <div id="col-inner-tuyendung">
+                    <a href="/backend.html"><img src="/Image/tuyendung.png" alt=""></a>
+                    <div id="text-box-tuyendung">
+                        <h2>𝐁𝐚𝐜𝐤𝐞𝐧𝐝 (𝐉𝐮𝐧𝐢𝐨𝐫-𝐒𝐞𝐧𝐢𝐨𝐫)</h2>
+                        <p>Mô tả chi tiết</p>
+                    </div>
+
+                </div>
+                <div id="col-inner-tuyendung">
+                    <a href="/marketing.html"><img src="/Image/tuyendung.png" alt=""></a>
+                    <div id="text-box-tuyendung">
+                        <h2>𝐌𝐚𝐫𝐤𝐞𝐭𝐢𝐧𝐠 𝐆𝐚𝐦𝐞</h2>
+                        <p>Mô tả chi tiết</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        async function loadHTML(url, containerId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+                }
+                const htmlContent = await response.text();
+                document.getElementById(containerId).innerHTML = htmlContent;
+            } catch (error) {
+                console.error("Error loading HTML:", error);
+            }
+        }
+
+        loadHTML('./html/client/header.html', 'header_tuyendung');
+        loadHTML('./html/client/footer.html', 'footer_tuyendung');
+    </script>
+    <div id="footer_tuyendung"></div>
+</body>
+
+</html>

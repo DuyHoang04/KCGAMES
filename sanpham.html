@@ -1,0 +1,100 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm - KCGAMES</title>
+    <link rel="icon" type="image/png" href="/Image/logo-Photoroom.png">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/sanpham.css"> 
+    <link rel="stylesheet" href="/css/footer.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    <div id="header_sanpham"></div>
+
+    <img id="main_page" src="/Image/draw-3583548_1280.png" alt="Ảnh nền sản phẩm">
+
+    <section id="section-sanpham">
+        <div id="section-content-sanpham">
+            <div id="col-sanpham1">
+                
+                <div class="game-card">
+                    <div class="image-wrapper">
+                        <img src="/Image/game1.png" alt="TEN GAME Icon">
+
+                        <div class="game-overlay">
+                            <a href="LINK_TAI_GAME_1" class="view-more-link">
+                                Xem thêm
+                            </a>
+                        </div>
+                    </div>
+                    <div class="text-info">
+                        <h4> TEN GAME</h4>
+                        <img class="download-badge" src="/Image/androi-e1721277717590.png" alt="Tải trên Google Play">
+                        <P>Mô tả game</P>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="image-wrapper">
+                        <img src="/Image/game1.png" alt="TEN GAME Icon">
+                        <div class="game-overlay">
+                            <a href="LINK_TAI_GAME_2" class="view-more-link">
+                                Xem thêm
+                            </a>
+                        </div>
+                    </div>
+                    <div class="text-info">
+                        <h4> TEN GAME</h4>
+                        <img class="download-badge" src="/Image/androi-e1721277717590.png" alt="Tải trên Google Play">
+                        <P>Mô tả game</P>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="image-wrapper">
+                        <img src="/Image/game1.png" alt="TEN GAME Icon">
+                        <div class="game-overlay">
+                            <a href="LINK_TAI_GAME_3" class="view-more-link">
+                                Xem thêm
+                            </a>
+                        </div>
+                    </div>
+                    <div class="text-info">
+                        <h4> TEN GAME</h4>
+                        <img class="download-badge" src="/Image/androi-e1721277717590.png" alt="Tải trên Google Play">
+                        <P>Mô tả game</P>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        async function loadHTML(url, containerId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+                }
+                const htmlContent = await response.text();
+                document.getElementById(containerId).innerHTML = htmlContent;
+            } catch (error) {
+                console.error("Error loading HTML:", error);
+            }
+        }
+
+        loadHTML('./html/client/header.html', 'header_sanpham');
+        loadHTML('./html/client/footer.html', 'footer_sanpham');
+    </script>
+    
+    <div id="footer_sanpham"></div>
+</body>
+
+</html>
