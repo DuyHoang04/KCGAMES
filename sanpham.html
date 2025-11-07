@@ -76,8 +76,22 @@
         </div>
     </section>
 
-    <script>
-        async function loadHTML(url, containerId) {
+ <script>
+        function setActiveNav() {
+            const navLinkEls = document.querySelectorAll('.nav_link');
+            const windowPathname = window.location.pathname;
+
+            navLinkEls.forEach(navLinkEl => {
+                const navLinkPathname = new URL(navLinkEl.href).pathname;
+                const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
+                const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
+                navLinkEl.classList.remove('active');
+                if (normalizedWindowPath === normalizedNavLinkPath) {
+                    navLinkEl.classList.add('active');
+                }
+            });
+        }
+        async function loadHTML(url, containerId, callback = () => { }) {
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
@@ -85,12 +99,12 @@
                 }
                 const htmlContent = await response.text();
                 document.getElementById(containerId).innerHTML = htmlContent;
+                callback();
             } catch (error) {
                 console.error("Error loading HTML:", error);
             }
         }
-
-        loadHTML('./html/client/header.html', 'header_sanpham');
+        loadHTML('./html/client/header.html', 'header_sanpham', setActiveNav);
         loadHTML('./html/client/footer.html', 'footer_sanpham');
     </script>
     

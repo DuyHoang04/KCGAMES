@@ -50,11 +50,10 @@
     transition: 0.3s ease;
     white-space: nowrap;
 }
-
 #navbar li a:hover,
 #navbar li a.active {
-    color: black;
-
+    color: black; /* Màu chữ cam (thống nhất với gạch chân) */
+    font-weight: 700; /* Làm chữ in đậm */
 }
 
 #navbar li a.active::after,
@@ -62,7 +61,7 @@
     content: "";
     width: 70%;
     height: 3px;
-    background: #ea7225;
+    background: #ea7225; 
     position: absolute;
     bottom: -4px;
     left: 20px;
