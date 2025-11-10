@@ -1,3 +1,4 @@
+
 // server.js
 
 // Tải các biến môi trường từ file .env
@@ -6,8 +7,9 @@ require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+// Bỏ require path và fs vì không còn lưu file cục bộ nữa
+// const path = require('path');
+// const fs = require('fs'); 
 
 const app = express();
 
@@ -20,6 +22,7 @@ const RECEIVER_EMAIL = process.env.RECEIVER_EMAIL;
 // Kiểm tra biến môi trường quan trọng
 if (!SENDER_EMAIL || !APP_PASSWORD || !RECEIVER_EMAIL) {
     console.error("LỖI CẤU HÌNH: Thiếu SENDER_EMAIL, APP_PASSWORD, hoặc RECEIVER_EMAIL trong file .env!");
+    // Trong môi trường Vercel, nên để code này để Serverless Function bị lỗi nếu thiếu config
     process.exit(1);
 }
 
@@ -32,9 +35,9 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Cấu hình Multer: giới hạn 5MB và lưu tạm thời vào 'uploads/'
+
 const upload = multer({
-    dest: 'uploads/',
+    storage: multer.memoryStorage(),
     limits: { fileSize: 5 * 1024 * 1024 }
 }).single('resume');
 
@@ -46,8 +49,6 @@ app.use(express.urlencoded({ extended: true }));
 // --- ENDPOINT API: /api/send-application ---
 app.post('/api/send-application', (req, res) => {
 
-    let tempFilePath = null;
-
     upload(req, res, async (err) => {
 
         try {
@@ -55,6 +56,8 @@ app.post('/api/send-application', (req, res) => {
             if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
                 return res.status(400).json({ success: false, message: 'Kích thước file CV quá lớn (tối đa 5MB).' });
             } else if (err) {
+                // Lỗi multer chung chung (ví dụ: file type không hợp lệ)
+                console.error('Lỗi Multer:', err);
                 return res.status(500).json({ success: false, message: 'Lỗi xử lý file đính kèm.' });
             }
 
@@ -65,7 +68,6 @@ app.post('/api/send-application', (req, res) => {
             if (!file) {
                 return res.status(400).json({ success: false, message: 'Chưa có file CV đính kèm.' });
             }
-            tempFilePath = file.path;
 
             // Hàm làm sạch dữ liệu để tránh XSS
             const safeNotes = notes ? notes.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Không có ghi chú.';
@@ -87,28 +89,29 @@ app.post('/api/send-application', (req, res) => {
                     <hr>
                     <p><i>CV đã được đính kèm.</i></p>
                 `,
-                attachments: [{ filename: file.originalname, path: tempFilePath }]
+
+                attachments: [{ filename: file.originalname, content: file.buffer }]
             };
 
             await transporter.sendMail(recruiterMailOptions);
 
 
-
+            // --- 2. Gửi Email Xác nhận cho ỨNG VIÊN ---
             const confirmationMailOptions = {
                 from: `"Bộ phận Tuyển dụng" <${SENDER_EMAIL}>`,
                 to: email,
                 subject: `[Xác nhận] Đã nhận đơn ứng tuyển vị trí ${job_position}`,
                 html: `
-                    Xin chào ${full_name},
-                    <br><br>
-                    Chúng tôi đã nhận được đơn ứng tuyển của bạn cho vị trí <b>${job_position}</b>.
-                    <br>
-                    Cảm ơn bạn đã quan tâm. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.
-                    <br><br>
-                    Trân trọng,
-                    <br>
-                    Công ty Tuyển Dụng
-                `,
+                    Xin chào ${full_name},
+                    <br><br>
+                    Chúng tôi đã nhận được đơn ứng tuyển của bạn cho vị trí <b>${job_position}</b>.
+                    <br>
+                    Cảm ơn bạn đã quan tâm. Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất.
+                    <br><br>
+                    Trân trọng,
+                    <br>
+                    Công ty Tuyển Dụng
+                `,
             };
 
             await transporter.sendMail(confirmationMailOptions);
@@ -120,7 +123,7 @@ app.post('/api/send-application', (req, res) => {
 
             console.error('Lỗi gửi đơn hoặc xử lý server:', error);
 
-            // Gửi lỗi chung chung ra Frontend (An toàn)
+
             let userMessage = 'Lỗi hệ thống: Không thể gửi đơn ứng tuyển. Vui lòng thử lại.';
             if (error.code === 'EAUTH') {
                 console.error("LỖI BẢO MẬT: Kiểm tra lại SENDER_EMAIL và APP_PASSWORD trong file .env!");
@@ -130,16 +133,18 @@ app.post('/api/send-application', (req, res) => {
             res.status(500).json({ success: false, message: userMessage });
 
         } finally {
-            // Dọn dẹp File Tạm thời
-            if (tempFilePath && fs.existsSync(tempFilePath)) {
-                fs.unlink(tempFilePath, (err) => {
-                    if (err) console.error("Lỗi khi xóa file tạm thời:", err);
-                });
-            }
+
         }
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server đang chạy tại http://localhost:${PORT}`);
-});
+
+
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL_ENV) {
+    app.listen(PORT, () => {
+        console.log(`Server đang chạy tại http://localhost:${PORT}`);
+    });
+}
+
+
+module.exports = app;
