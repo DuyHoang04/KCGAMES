@@ -185,11 +185,10 @@ app.post('/api/send-contact', textOnlyParser, async (req, res) => {
 
 
 
-if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL_ENV) {
-    app.listen(PORT, () => {
-        console.log(`Server đang chạy tại http://localhost:${PORT}`);
-    });
-}
+
+app.listen(PORT, () => {
+    console.log(`Server đang chạy tại http://localhost:${PORT}`);
+});
 
 
 module.exports = app;
