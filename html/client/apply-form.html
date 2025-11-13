@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ứng tuyển - KCGAMES</title>
     <link rel="icon" type="image/png" href="/Image/logo-Photoroom.png">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/apply.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="/js/apply.js"></script>
+    <script src="/js/header.js"></script>
 </head>
 
 <body>
@@ -56,40 +57,130 @@
     </div>
 
     <script>
-        // Hàm Tải nội dung HTML bất đồng bộ (giữ nguyên)
-        async function loadHTML(url, containerId) {
+
+        /**
+         * Khởi tạo menu điều hướng di động (mobile menu)
+         * Thêm/bỏ class 'active' trên navbar và chuyển đổi icon.
+         */
+        function initializeMobileMenu() {
+            const navbar = document.getElementById('navbar');
+            const mobileToggle = document.getElementById('mobile-toggle');
+
+            // Kiểm tra chắc chắn các phần tử tồn tại sau khi header được tải
+            if (!mobileToggle || !navbar) {
+                console.warn("CẢNH BÁO: Không tìm thấy #navbar hoặc #mobile-toggle. Menu di động không hoạt động.");
+                return;
+            }
+
+            const menuIcon = mobileToggle.querySelector('i');
+
+            mobileToggle.addEventListener('click', () => {
+                navbar.classList.toggle('active');
+
+                // Đảm bảo icon chỉ được đổi khi menuIcon tồn tại
+                if (menuIcon) {
+                    if (navbar.classList.contains('active')) {
+                        menuIcon.classList.remove('fa-bars');
+                        menuIcon.classList.add('fa-times');
+                    } else {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                }
+            });
+        }
+
+        /**
+         * Thiết lập class 'active' cho liên kết điều hướng tương ứng với trang hiện tại.
+         */
+        function setActiveNav() {
+            const navLinkEls = document.querySelectorAll('.nav_link');
+            const windowPathname = window.location.pathname;
+
+            navLinkEls.forEach(navLinkEl => {
+                try {
+                    // Tạo URL mới để lấy pathname chuẩn xác
+                    const navLinkPathname = new URL(navLinkEl.href).pathname;
+
+                    // Chuẩn hóa đường dẫn cho trang chủ
+                    const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
+                    const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
+
+                    // Xóa lớp 'active' trước khi kiểm tra
+                    navLinkEl.classList.remove('active');
+
+                    // So sánh và thêm lớp 'active'
+                    if (normalizedWindowPath === normalizedNavLinkPath) {
+                        navLinkEl.classList.add('active');
+                    }
+                } catch (e) {
+                    console.warn("LỖI XỬ LÝ LIÊN KẾT: Một liên kết điều hướng có href không hợp lệ.", navLinkEl);
+                }
+            });
+        }
+
+        /**
+         * Tải nội dung HTML từ URL và chèn vào container.
+         * @param {string} url - Đường dẫn đến tệp HTML.
+         * @param {string} containerId - ID của phần tử chứa nội dung.
+         * @param {function} [callback] - Hàm được gọi sau khi tải thành công.
+         */
+        async function loadHTML(url, containerId, callback = null) {
             try {
+                const container = document.getElementById(containerId);
+                if (!container) {
+                    console.error(`LỖI KHÔNG TÌM THẤY: Container với ID '${containerId}' không tồn tại.`);
+                    return;
+                }
+
                 const response = await fetch(url);
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+                    throw new Error(`Failed to fetch ${url} (Mã: ${response.status} - ${response.statusText})`);
                 }
+
                 const htmlContent = await response.text();
-                document.getElementById(containerId).innerHTML = htmlContent;
+                container.innerHTML = htmlContent;
+
+                // Gọi callback sau khi chèn nội dung thành công
+                if (callback) {
+                    callback();
+                }
+
             } catch (error) {
-                console.error("Error loading HTML:", error);
+                console.error(`❌ Error loading HTML từ ${url}:`, error);
             }
         }
 
+        /**
+         * Hàm gọi lại sau khi Header được tải xong
+         */
+        function afterHeaderLoad() {
+            setActiveNav();
+            initializeMobileMenu();
+        }
+
+        /**
+         * Khởi tạo các sự kiện khi DOM đã tải xong
+         */
         document.addEventListener('DOMContentLoaded', () => {
-            loadHTML('./header.html', 'header_apply_form');
+            // 1. Tải Header và Footer
+            loadHTML('./header.html', 'header_apply_form', afterHeaderLoad);
             loadHTML('./footer.html', 'footer_apply_form');
 
+            // 2. Xử lý Form Ứng tuyển
             const form = document.getElementById('form_apply');
+            const submitButton = document.querySelector('#btn_send');
+            const SERVER_ENDPOINT = "/api/send-application";
 
-            // Kiểm tra form tồn tại ngay từ đầu
             if (!form) {
-                console.error("LỖI KHÔNG TÌM THẤY: Form với ID 'form_apply' không tồn tại.");
+                console.error("LỖI KHÔNG TÌM THẤY: Form với ID 'form_apply' không tồn tại. Bỏ qua xử lý form.");
                 return;
             }
-
-            const submitButton = document.querySelector('#btn_send');
 
             if (!submitButton) {
-                console.error("LỖI KHÔNG TÌM THẤY: Button với ID 'btn_send' không tồn tại.");
+                console.error("LỖI KHÔNG TÌM THẤY: Button với ID 'btn_send' không tồn tại. Bỏ qua xử lý form.");
                 return;
             }
-
-            const SERVER_ENDPOINT = "/api/send-application";
 
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -103,20 +194,26 @@
                     method: 'POST',
                     body: formData
                 })
-                    .then(response => {
-                        return response.json().then(data => ({
-                            status: response.status,
-                            ok: response.ok,
-                            data: data
-                        }));
-                    })
-                    .then(({ status, ok, data }) => {
-                        if (ok) {
-                            alert('✅ Đơn ứng tuyển đã được gửi thành công! Vui lòng kiểm tra email của bạn để nhận thư xác nhận.');
-                            form.reset();
-                        } else {
-                            throw new Error(data.message || `Lỗi không xác định (Mã: ${status})`);
+                    .then(async response => {
+                        // Thử phân tích JSON. Nếu thất bại, vẫn tiếp tục để catch lỗi status
+                        let data = {};
+                        try {
+                            data = await response.json();
+                        } catch (e) {
+                            // Có thể server trả về lỗi không phải JSON, ví dụ 500 HTML
+                            console.warn("Phản hồi không phải JSON hợp lệ:", await response.text());
                         }
+
+                        if (response.ok) {
+                            return { status: response.status, ok: response.ok, data: data };
+                        } else {
+                            // Server phản hồi lỗi (4xx, 5xx)
+                            throw new Error(data.message || `Lỗi không xác định (Mã: ${response.status})`);
+                        }
+                    })
+                    .then(({ data }) => {
+                        alert('✅ Đơn ứng tuyển đã được gửi thành công! Vui lòng kiểm tra email của bạn để nhận thư xác nhận.');
+                        form.reset();
                     })
                     .catch(error => {
                         console.error('Lỗi gửi đơn:', error);
