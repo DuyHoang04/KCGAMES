@@ -157,12 +157,45 @@ p {
     color: var(--accent);
 }
 
+.apply-button {
+    background-color: var(--accent);
+    color: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    max-width: 250px;
+    width: 100%;
+    text-decoration: none;
+    margin: 0 auto;
+    text-align: center;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.apply-button:hover {
+    background-color: var(--card-bg);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.button-container {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
 #textbox-right,
 #textbox-left {
     flex: 1 1 50%;
     max-width: 650px;
     min-width: 300px;
-
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -215,6 +248,15 @@ p {
         margin-top: 120px;
     }
 
+    #textbox-right,
+    #textbox-left {
+        text-align: left;
+    }
+
+    .button-container {
+        justify-content: center;
+
+    }
 
     #row-inner {
         flex-wrap: wrap;

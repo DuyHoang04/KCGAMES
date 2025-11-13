@@ -121,10 +121,11 @@ img {
 }
 
 #col-main-product img:first-child {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 250px;
     margin: 10px;
     flex-shrink: 0;
+    border-radius: 10px;
 }
 
 #box_text {
