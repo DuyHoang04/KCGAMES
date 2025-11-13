@@ -28,12 +28,16 @@ if (!SENDER_EMAIL || !APP_PASSWORD || !RECEIVER_EMAIL) {
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
     auth: {
         user: SENDER_EMAIL,
         pass: APP_PASSWORD
-    }
+    },
+
+    connectionTimeout: 60000,
+    greetingTimeout: 30000,
+    socketTimeout: 60000
 });
 
 
