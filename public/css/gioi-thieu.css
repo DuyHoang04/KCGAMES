@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    background-color: var(--page-bg);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#main_page {
+    width: 100%;
+    height: 700px;
+    margin: 0;
+    object-fit: cover;
+}
+
+p {
+    margin-top: 0;
+    text-align: justify;
+}
+
+
+#section-gioithieu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 50px 15px;
+}
+
+#section-gioithieu img {
+    max-width: 500px;
+    height: auto;
+}
+
+#section-content {
+    margin-right: 40px;
+    margin-left: 0;
+}
+
+#section-content p {
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+#section-content p[style] {
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-align: left;
+}
+
+
+
+#section-tuyen-ngon {
+    margin-bottom: 100px;
+}
+
+#section-content h2 {
+    text-align: center;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+#main-tuyen-ngon {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#col-inner {
+    margin: 20px;
+    height: auto;
+    width: 300px;
+    min-height: 320px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+}
+
+.item-center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.item-center img {
+    max-width: 80px;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#text-box {
+    padding-top: 10px;
+    text-align: center;
+    flex-grow: 1;
+    justify-items: center;
+}
+
+#text-box p:first-child {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#text-box p:last-child {
+    line-height: 1.5;
+    color: #555;
+    text-align: center;
+}
+
+
+
+#section-thanhvien {
+    padding: 0 15px 50px 15px;
+}
+
+#section-thanhvien h2 {
+    text-align: center;
+    padding-top: 40px;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+#section-content-thanhvien {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#col-inner-thanhvien {
+    margin: 15px;
+    height: auto;
+    width: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    transition: transform 0.3s ease;
+}
+
+#col-inner-thanhvien:hover {
+    transform: translateY(-5px);
+}
+
+#col-inner-thanhvien img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid #f0f0f0;
+}
+
+#box-text-info {
+    text-align: center;
+}
+
+#box-text-info h4 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+#box-text-info a {
+    text-decoration: none;
+    color: #333;
+}
+
+#box-text-info a:hover {
+    color: #EB731A;
+}
+
+#box-text-info p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #555;
+    font-style: italic;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1200px) {
+    #section-gioithieu {
+        padding: 50px 40px;
+    }
+
+    #section-gioithieu img {
+        max-width: 400px;
+    }
+
+    #section-content {
+        margin-right: 20px;
+        max-width: 500px;
+    }
+
+    #col-inner-thanhvien {
+        width: 250px;
+        margin: 15px;
+    }
+}
+
+
+@media only screen and (max-width: 1024px) {
+    #main_page {
+        height: 500px;
+    }
+
+    #section-gioithieu {
+        flex-direction: column;
+        padding: 50px 30px;
+    }
+
+    #section-gioithieu img {
+        max-width: 80%;
+        margin: 20px auto;
+        order: -1;
+    }
+
+    #section-content {
+        margin: 0 auto;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    #section-content p[style] {
+        font-size: 30px !important;
+        text-align: center !important;
+    }
+
+    #main-tuyen-ngon {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    #col-inner {
+        width: 45%;
+        min-width: 300px;
+        margin: 15px auto;
+    }
+
+    #col-inner-thanhvien {
+        width: calc(33.333% - 30px);
+        max-width: 280px;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    #main_page {
+        height: 300px;
+    }
+
+    #section-gioithieu {
+        padding: 30px 15px;
+    }
+    .team-row{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #section-thanhvien h2 {
+        font-size: 2em;
+    }
+
+    #col-inner {
+        width: 90%;
+        min-width: 280px;
+        margin: 10px auto;
+    }
+
+    #section-content p {
+        font-size: 16px;
+    }
+
+    #col-inner-thanhvien {
+        width: calc(50% - 30px);
+        max-width: 350px;
+        margin: 15px;
+        padding: 20px 10px;
+    }
+
+    #col-inner-thanhvien img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+
+@media only screen and (max-width: 576px) {
+
+    #col-inner-thanhvien {
+        width: 90%;
+        max-width: 400px;
+        margin: 15px auto;
+        padding: 25px 0;
+    }
+
+    #col-inner-thanhvien img {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
+    }
+}

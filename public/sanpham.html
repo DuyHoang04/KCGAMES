@@ -4,41 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoạt Động - KCGAMES</title>
-    <link rel="icon" type="image/png" href="/Image/logo-Photoroom.png">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/hoatdong.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <script src="/js/header.js"></script>
+    <title>Sản Phẩm - KCGAMES</title>
+    <link rel="icon" type="image/png" href="/public/Image/logo-Photoroom.png">
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/sanpham.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
+    <script src="/public/js/header.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-    <div id="header_hoatdong"></div>
-    <img id="main_page" src="/Image/draw-3583548_1280.png" alt="">
 
-    <div id="wrapper">
-        <div id="text-header">
-            <h1>HOẠT ĐỘNG</h1>
-            <p>Tất cả thành viên KCGAMES đều là những con người tràn đầy năng lượng, sôi nổi và nhiệt huyết. Weuper luôn
-                đoàn kết, đồng lòng và luôn hết mình cả trong công việc cũng như trong những hoạt động tập thể</p>
+    <div id="header_sanpham"></div>
 
-        </div>
+    <img id="main_page" src="/public/Image/draw-3583548_1280.png" alt="Ảnh nền sản phẩm">
 
-        <div id="main-content">
-            <div id="row-inner">
-                <div id="col-inner">
-                    <img src="/Image/hoatdong.png" alt="">
-                    <div id="text-content">
-                        <h5>
-                            TÊN HOẠT ĐỘNG
-                        </h5>
-                        <p>Mô tả hoạt động</p>
+    <section id="section-sanpham">
+        <div id="section-content-sanpham">
+            <div id="col-sanpham1">
+
+                <div class="game-card">
+                    <div class="image-wrapper">
+                        <img src="/public/Image/game1.png" alt="TEN GAME Icon">
+
+                        <div class="game-overlay">
+                            <a href="/public/sanpham.html" class="view-more-link">
+                                TEN GAME (Comming Soon)
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <div class="game-card">
+                    <div class="image-wrapper">
+                        <img src="/public/Image/game1.png" alt="TEN GAME Icon">
+                        <div class="game-overlay">
+                            <a href="/public/sanpham.html" class="view-more-link">
+                                TEN GAME (Comming Soon)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
-    </div>
+    </section>
 
     <script>
         function initializeMobileMenu() {
@@ -102,11 +113,11 @@
         }
 
 
-        loadHTML('./html/client/header.html', 'header_hoatdong', afterHeaderLoad);
-        loadHTML('./html/client/footer.html', 'footer_hoatdong');
+        loadHTML('./html/client/header.html', 'header_sanpham', afterHeaderLoad);
+        loadHTML('./html/client/footer.html', 'footer_sanpham');
     </script>
-    <div id="footer_hoatdong"></div>
 
+    <div id="footer_sanpham"></div>
 </body>
 
 </html>

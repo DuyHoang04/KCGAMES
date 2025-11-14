@@ -5,29 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KCGAMES</title>
-    <link rel="icon" type="image/png" href="/Image/logo-Photoroom.png">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/index.css"> 
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="icon" type="image/png" href="/public/Image/logo-Photoroom.png">
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script>
+        if (window.location.protocol === 'file:') {
+            const base = document.createElement('base');
+            base.href = './';
+            document.head.prepend(base);
+        }
+    </script>
 </head>
 
 <body>
     <div id="header_home"></div>
     <div class="wrapper">
-        <img id="main_page" src="/Image/draw-3583548_1280.png" alt="">
+        <img id="main_page" src="/public/Image/draw-3583548_1280.png" alt="">
 
         <section id="about_we">
-            <h2>Về chúng tôi</h2>
+
             <div id="main_about">
                 <div id="text_about">
-                    <p> <strong>KCGAMES</strong> là một studio game mobile trẻ tuổi nhưng đầy tham vọng, với đội ngũ nhân
-                        viên tài năng và tâm huyết. Studio đang từng bước khẳng định vị thế của mình trên thị trường game mobile Việt
-                        Nam và vươn tầm ra thị trường quốc tế. Hãy cùng theo dõi và ủng hộ <strong>KCGAMES</strong> trên con
-                        đường chinh phục đam mê và tạo ra những trò chơi di động chất lượng cao, mang đến cho người chơi những trải
+                    <h2 style="text-align: left;">KCGAMES</h2>
+                    <p> <strong>KCGAMES</strong> là một studio game mobile trẻ tuổi nhưng đầy tham vọng, với đội ngũ
+                        nhân
+                        viên tài năng và tâm huyết. Studio đang từng bước khẳng định vị thế của mình trên thị trường
+                        game mobile Việt
+                        Nam và vươn tầm ra thị trường quốc tế. Hãy cùng theo dõi và ủng hộ <strong>KCGAMES</strong> trên
+                        con
+                        đường chinh phục đam mê và tạo ra những trò chơi di động chất lượng cao, mang đến cho người chơi
+                        những trải
                         nghiệm giải trí tuyệt vời nhất!</p>
                 </div>
-                <img src="/Image/1.png" alt="">
+                <img src="/public/Image/1.png" alt="">
             </div>
         </section>
 
@@ -37,17 +49,17 @@
 
             <div id="main-product">
                 <div id="col-main-product">
-                    <img src="/Image/icon-1-e1721271885124.png" alt="">
+                    <img src="/public/Image/icon-1-e1721271885124.png" alt="">
                     <div id="box_text">
                         <li style="padding:10px 0  10px 0;"><a href=""></a> Ten Game</li>
-                        <img style="width: 100px;height: 40px;" src="/Image/androi-e1721277717590.png" alt="">
+                        <img style="width: 100px;height: 40px;" src="/public/Image/androi-e1721277717590.png" alt="">
                         <p style="padding-top: 10px;">Ra mắt game mới với nhiều chức năng mới mẻ và thú vị</p>
                     </div>
                 </div>
                 <div id="col-demo">
-                    <img src="/Image/7.png" alt="Sản phẩm demo 1">
-                    <img src="/Image/7.png" alt="Sản phẩm demo 2">
-                    <img src="/Image/7.png" alt="Sản phẩm demo 3">
+                    <img src="/public/Image/7.png" alt="Sản phẩm demo 1">
+                    <img src="/public/Image/7.png" alt="Sản phẩm demo 2">
+                    <img src="/public/Image/7.png" alt="Sản phẩm demo 3">
                 </div>
             </div>
 
@@ -57,7 +69,7 @@
             <h2>HOẠT ĐỘNG</h2>
             <div id="section-content">
                 <div id="col-inner-hoatdong">
-                    <img src="/Image/draw-3583548_1280.png" alt="Hình ảnh hoạt động">
+                    <img src="/public/Image/draw-3583548_1280.png" alt="Hình ảnh hoạt động">
                     <div id="text-hoatdong">
                         <h2>Ten hoat dong</h2>
                         <p>Ngay thang nam</p>
@@ -66,7 +78,7 @@
                     </div>
                 </div>
                 <div id="col-inner-hoatdong">
-                    <img src="/Image/draw-3583548_1280.png" alt="Hình ảnh hoạt động">
+                    <img src="/public/Image/draw-3583548_1280.png" alt="Hình ảnh hoạt động">
                     <div id="text-hoatdong">
                         <h2>Ten hoat dong</h2>
                         <p>Ngay thang nam</p>
@@ -75,7 +87,7 @@
                     </div>
                 </div>
                 <div id="col-inner-hoatdong">
-                    <img src="/Image/draw-3583548_1280.png" alt="Hình ảnh hoạt động">
+                    <img src="/public/Image/draw-3583548_1280.png" alt="Hình ảnh hoạt động">
                     <div id="text-hoatdong">
                         <h2>Ten hoat dong</h2>
                         <p>Ngay thang nam</p>
@@ -96,7 +108,7 @@
             const mobileToggle = document.getElementById('mobile-toggle');
 
             if (mobileToggle && navbar) {
-            
+
                 const menuIcon = mobileToggle.querySelector('i');
 
                 mobileToggle.addEventListener('click', () => {
@@ -105,7 +117,7 @@
                     if (menuIcon) { // Kiểm tra nếu có icon Boxicons
                         if (navbar.classList.contains('active')) {
                             // Giả định Boxicons dùng bx-x cho đóng và bx-menu cho mở
-                            menuIcon.classList.remove('bx-menu'); 
+                            menuIcon.classList.remove('bx-menu');
                             menuIcon.classList.add('bx-x');
                         } else {
                             menuIcon.classList.remove('bx-x');
@@ -156,8 +168,8 @@
         }
 
 
-        loadHTML('./html/client/header.html', 'header_home', afterHeaderLoad);
-        loadHTML('./html/client/footer.html', 'footer_home');
+        loadHTML('./public/html/client/header.html', 'header_home', afterHeaderLoad);
+        loadHTML('./public/html/client/footer.html', 'footer_home');
     </script>
     <div id="footer_home"></div>
 </body>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/team-css/team-1.css">
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
+</head>
+
+<body>
+    <div id="header_home"></div>
+    <div id="main-content">
+        <div class="info">
+            
+        </div>
+        <div class="slider-wrapper">
+            <div class="slider-container">
+                <div class="slide active">
+                    <img src="/public/Image/backgound-tuyendung.png" alt="Ảnh 1">
+                </div>
+                <div class="slide">
+                    <img src="/public/Image/background-tuyendung1.jpg" alt="Ảnh 2">
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <span class="slide-number">01</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="slide-number">02</span>
+                <button class="prev-btn">◀</button>
+                <button class="next-btn">▶</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/public/team-js/team1.js"></script>
+</body>
+<script>
+    function initializeMobileMenu() {
+        const navbar = document.getElementById('navbar');
+        const mobileToggle = document.getElementById('mobile-toggle');
+
+        if (mobileToggle && navbar) {
+
+            const menuIcon = mobileToggle.querySelector('i');
+
+            mobileToggle.addEventListener('click', () => {
+                navbar.classList.toggle('active');
+
+                if (menuIcon) { // Kiểm tra nếu có icon Boxicons
+                    if (navbar.classList.contains('active')) {
+                        // Giả định Boxicons dùng bx-x cho đóng và bx-menu cho mở
+                        menuIcon.classList.remove('bx-menu');
+                        menuIcon.classList.add('bx-x');
+                    } else {
+                        menuIcon.classList.remove('bx-x');
+                        menuIcon.classList.add('bx-menu');
+                    }
+                }
+            });
+        }
+    }
+
+
+    function setActiveNav() {
+        const navLinkEls = document.querySelectorAll('#navbar li a'); // Lấy tất cả thẻ <a> trong navbar
+        const windowPathname = window.location.pathname;
+
+        navLinkEls.forEach(navLinkEl => {
+            const navLinkPathname = new URL(navLinkEl.href).pathname;
+            const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
+            const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
+
+            navLinkEl.classList.remove('active');
+            if (normalizedWindowPath === normalizedNavLinkPath) {
+                navLinkEl.classList.add('active');
+            }
+        });
+    }
+
+    async function loadHTML(url, containerId, callback = () => { }) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+            }
+            const htmlContent = await response.text();
+
+            document.getElementById(containerId).innerHTML = htmlContent;
+            callback();
+
+        } catch (error) {
+            console.error("Error loading HTML:", error);
+        }
+    }
+
+
+    function afterHeaderLoad() {
+        setActiveNav();
+        initializeMobileMenu();
+    }
+
+
+    loadHTML('../html/client/header.html', 'header_home', afterHeaderLoad);
+    loadHTML('../html/client/footer.html', 'footer_home');
+</script>
+<div id="footer_home"></div>
+
+</html>

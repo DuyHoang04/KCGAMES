@@ -185,6 +185,14 @@
         padding: 0;
     }
 
+    .logo {
+        display: none;
+    }
+
+    .logo-mobile {
+        display: block !important;
+    }
+
     #header {
         justify-content: space-between;
         padding: 20px 40px;

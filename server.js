@@ -3,15 +3,16 @@
 // 1. Tải các thư viện cần thiết
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
+const path = require('path');
 const multer = require('multer');
 const sgMail = require('@sendgrid/mail');
-// const path = require('path'); // Dùng __dirname trực tiếp cho tệp tĩnh
 
 const app = express();
 
 // 2. Lấy thông tin từ Biến Môi Trường (.env)
 const PORT = process.env.PORT || 3000;
-const SENDER_EMAIL = process.env.SENDER_EMAIL; // Phải được xác thực trên SendGrid
+const SENDER_EMAIL = process.env.SENDER_EMAIL;
 const RECEIVER_EMAIL = process.env.RECEIVER_EMAIL;
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 
@@ -32,11 +33,15 @@ const upload = multer({
 // 5. Middleware cho Express
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(helmet({
+    contentSecurityPolicy: false,
+}));
 
 
-// 6. PHỤC VỤ TỆP TĨNH (Sử dụng __dirname)
-// Phục vụ TẤT CẢ các file trong thư mục gốc của dự án (index.html, styles.css, script.js).
-app.use(express.static(__dirname));
+// 6. PHỤC VỤ TỆP TĨNH (STATIC FILES)
+// 💡 Cấu hình phục vụ thư mục vật lý 'public' tại tiền tố URL là '/public'.
+// Điều này giúp hỗ trợ các đường dẫn HTML kiểu href="/public/css/..."
+app.use('/public', express.static('public'));
 
 
 // 7. Hàm chuyển đổi file Buffer sang Base64 cho SendGrid
@@ -51,9 +56,43 @@ function bufferToAttachment(buffer, filename) {
     ];
 }
 
-// -----------------------------------------------------------
+
+// ==========================================================
+// 8. ĐỊNH TUYẾN HTML (ROUTING)
+// PHẢI ĐẶT SAU express.static để tài nguyên tĩnh được tìm thấy trước.
+// ==========================================================
+
+// Trang chủ: GET /
+app.get('/', (req, res) => {
+    // Phục vụ index.html tại thư mục public
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Định tuyến cho các trang HTML khác (Ví dụ: /gioi-thieu, /sanpham)
+// Tuyến này sẽ xử lý các yêu cầu như GET /gioi-thieu
+app.get('/:pageName', (req, res) => {
+    const page = req.params.pageName;
+    const filePath = path.join(__dirname, 'public', `${page}.html`);
+
+    // Gửi file nếu tìm thấy, nếu không, trả về 404
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            // Lỗi ENOENT = File Not Found
+            if (err.code === 'ENOENT') {
+                res.status(404).send('Page not found');
+            } else {
+                res.status(500).send('Internal Server Error');
+            }
+        }
+    });
+});
+
+
+// ==========================================================
+// 9. ENDPOINTS API (MAIL)
+// ==========================================================
+
 // --- ENDPOINT 1: /api/send-application (Ứng tuyển) ---
-// -----------------------------------------------------------
 app.post('/api/send-application', (req, res) => {
     upload(req, res, async (err) => {
         try {
@@ -73,9 +112,9 @@ app.post('/api/send-application', (req, res) => {
             const safeNotes = notes ? notes.replace(/</g, "&lt;").replace(/>/g, "&gt;") : 'Không có ghi chú.';
             const attachments = bufferToAttachment(file.buffer, file.originalname);
 
-            // 1️⃣ Gửi mail cho nhà tuyển dụng (kèm CV) - Định dạng chuyên nghiệp
+            // 1️⃣ Gửi mail cho nhà tuyển dụng (kèm CV)
             const recruiterMail = {
-                from: `${full_name} (Ứng Tuyển) <${SENDER_EMAIL}>`, // Thêm tên ứng viên
+                from: `${full_name} (Ứng Tuyển) <${SENDER_EMAIL}>`,
                 to: RECEIVER_EMAIL,
                 replyTo: email,
                 subject: `[ỨNG TUYỂN MỚI] Vị trí ${job_position} từ ${full_name}`,
@@ -125,7 +164,7 @@ app.post('/api/send-application', (req, res) => {
             // 2️⃣ Gửi email xác nhận cho ứng viên
             const confirmationMail = {
                 from: `KCGAMES HR <${SENDER_EMAIL}>`,
-                to: email, // Email của ứng viên
+                to: email,
                 subject: `[Xác nhận] Đã nhận đơn ứng tuyển vị trí ${job_position}`,
                 html: `
                     Xin chào ${full_name},<br><br>
@@ -142,16 +181,13 @@ app.post('/api/send-application', (req, res) => {
 
         } catch (error) {
             console.error('Lỗi gửi email ứng tuyển:', error);
-            // Lỗi SendGrid thường có response code
             const statusCode = error.code || 500;
             res.status(statusCode).json({ success: false, message: 'Không thể gửi đơn ứng tuyển. Vui lòng thử lại.' });
         }
     });
 });
 
-// -----------------------------------------------------------
 // --- ENDPOINT 2: /api/send-contact (Liên hệ) ---
-// -----------------------------------------------------------
 app.post('/api/send-contact', async (req, res) => {
     try {
         const { full_name, email, notes } = req.body;
@@ -196,11 +232,11 @@ app.post('/api/send-contact', async (req, res) => {
     }
 });
 
-// -----------------------------------------------------------
-// --- Khởi động Server ---
-// -----------------------------------------------------------
+
+// 10. KHỞI ĐỘNG SERVER
 app.listen(PORT, () => {
-    console.log(`Server đang chạy tại http://localhost:${PORT}. Phục vụ frontend từ thư mục gốc.`);
+    console.log(`Server đang chạy tại http://localhost:${PORT}.`);
+    console.log(`Frontend: Truy cập trang chủ tại http://localhost:${PORT}/`);
 });
 
 module.exports = app;

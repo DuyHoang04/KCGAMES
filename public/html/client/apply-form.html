@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ứng tuyển - KCGAMES</title>
-    <link rel="icon" type="image/png" href="/Image/logo-Photoroom.png">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/apply.css">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="icon" type="image/png" href="/public/Image/logo-Photoroom.png">
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/apply.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="/js/apply.js"></script>
-    <script src="/js/header.js"></script>
+    <script src="/public/js/apply.js"></script>
+    <script src="/public/js/header.js"></script>
 </head>
 
 <body>
@@ -58,10 +58,7 @@
 
     <script>
 
-        /**
-         * Khởi tạo menu điều hướng di động (mobile menu)
-         * Thêm/bỏ class 'active' trên navbar và chuyển đổi icon.
-         */
+     
         function initializeMobileMenu() {
             const navbar = document.getElementById('navbar');
             const mobileToggle = document.getElementById('mobile-toggle');
@@ -119,12 +116,6 @@
             });
         }
 
-        /**
-         * Tải nội dung HTML từ URL và chèn vào container.
-         * @param {string} url - Đường dẫn đến tệp HTML.
-         * @param {string} containerId - ID của phần tử chứa nội dung.
-         * @param {function} [callback] - Hàm được gọi sau khi tải thành công.
-         */
         async function loadHTML(url, containerId, callback = null) {
             try {
                 const container = document.getElementById(containerId);
@@ -141,8 +132,7 @@
                 const htmlContent = await response.text();
                 container.innerHTML = htmlContent;
 
-                // Gọi callback sau khi chèn nội dung thành công
-                if (callback) {
+               if (callback) {
                     callback();
                 }
 
@@ -151,23 +141,15 @@
             }
         }
 
-        /**
-         * Hàm gọi lại sau khi Header được tải xong
-         */
-        function afterHeaderLoad() {
+     function afterHeaderLoad() {
             setActiveNav();
             initializeMobileMenu();
         }
 
-        /**
-         * Khởi tạo các sự kiện khi DOM đã tải xong
-         */
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Tải Header và Footer
+       document.addEventListener('DOMContentLoaded', () => {
             loadHTML('./header.html', 'header_apply_form', afterHeaderLoad);
             loadHTML('./footer.html', 'footer_apply_form');
 
-            // 2. Xử lý Form Ứng tuyển
             const form = document.getElementById('form_apply');
             const submitButton = document.querySelector('#btn_send');
             const SERVER_ENDPOINT = "/api/send-application";
@@ -195,19 +177,16 @@
                     body: formData
                 })
                     .then(async response => {
-                        // Thử phân tích JSON. Nếu thất bại, vẫn tiếp tục để catch lỗi status
                         let data = {};
                         try {
                             data = await response.json();
                         } catch (e) {
-                            // Có thể server trả về lỗi không phải JSON, ví dụ 500 HTML
-                            console.warn("Phản hồi không phải JSON hợp lệ:", await response.text());
+                           console.warn("Phản hồi không phải JSON hợp lệ:", await response.text());
                         }
 
                         if (response.ok) {
                             return { status: response.status, ok: response.ok, data: data };
                         } else {
-                            // Server phản hồi lỗi (4xx, 5xx)
                             throw new Error(data.message || `Lỗi không xác định (Mã: ${response.status})`);
                         }
                     })

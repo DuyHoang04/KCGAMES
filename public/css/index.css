@@ -61,6 +61,7 @@ img {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding: 100px 0 100px 0;
 }
 
 #text_about {
