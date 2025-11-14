@@ -1,41 +1,121 @@
-.slider-wrapper {
-    position: relative;
-    width: 500px;
-    height: 600px;
-    background-color: #ffc107;
-    margin: 200px 0 200px 0;
+/* --- CSS cho Phần TEAM (Sliding Window/Drag) --- */
+
+#section-thanhvien {
+    padding: 50px 0;
+    text-align: center;
+    user-select: none;
+    /* Ngăn chặn việc chọn văn bản khi kéo */
 }
 
-.slider-container {
-    width: 100%;
-    height: 100%;
+#section-thanhvien h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* 1. Carousel Wrapper: Cố định kích thước hiển thị */
+.carousel-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
     overflow: hidden;
-    position: relative;
+    padding: 0 15px;
+    cursor: grab;
+    /* Thay đổi con trỏ chuột thành kéo */
 }
 
-.slide {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    opacity: 0;
-    transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+/* 2. Member Track: Chứa tất cả thẻ và là đối tượng bị dịch chuyển */
+.member-track {
+    display: flex;
+    transition: transform 0.3s ease-out;
+    padding-bottom: 20px;
+
+    /* Ẩn thanh cuộn vật lý */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-.slide.active {
-    left: 0;
-    opacity: 1;
+.member-track::-webkit-scrollbar {
+    display: none;
 }
 
-.slide img {
+/* 3. Thẻ Thành viên */
+.member-card {
+    min-width: 250px;
+    max-width: 280px;
+    flex-shrink: 0;
+    margin: 0 15px;
+    text-align: center;
+    padding: 10px;
+}
+
+.member-photo {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.member-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
 }
 
-.slider-controls {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+.member-info {
+    padding: 15px 0 10px;
+    background-color: #fff;
+}
+
+.member-info h4 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.member-info p {
+    margin: 5px 0 0;
+    color: #eb731a;
+    font-weight: 600;
+}
+
+/* 4. Điều khiển */
+.carousel-controls {
+    margin-top: 20px;
+}
+
+.carousel-controls button {
+    background: none;
+    border: 1px solid #ccc;
+    color: #333;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.carousel-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.carousel-controls button:hover:not(:disabled) {
+    background-color: #f0f0f0;
+}
+
+
+/* --- Responsive (Chỉ để tham khảo, không cần sửa) --- */
+@media (max-width: 768px) {
+    .member-card {
+        min-width: 40%;
+    }
+}
+
+@media (max-width: 480px) {
+    .member-card {
+        min-width: 70%;
+        margin: 0 10px;
+    }
 }

@@ -10,13 +10,6 @@
     <link rel="stylesheet" href="/public/css/index.css">
     <link rel="stylesheet" href="/public/css/footer.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script>
-        if (window.location.protocol === 'file:') {
-            const base = document.createElement('base');
-            base.href = './';
-            document.head.prepend(base);
-        }
-    </script>
 </head>
 
 <body>
@@ -168,8 +161,8 @@
         }
 
 
-        loadHTML('./public/html/client/header.html', 'header_home', afterHeaderLoad);
-        loadHTML('./public/html/client/footer.html', 'footer_home');
+        loadHTML('./html/client/header.html', 'header_home', afterHeaderLoad);
+        loadHTML('./html/client/footer.html', 'footer_home');
     </script>
     <div id="footer_home"></div>
 </body>

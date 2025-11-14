@@ -30,7 +30,7 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 } // Tối đa 5MB
 }).single('resume');
 
-// 5. Middleware cho Express
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(helmet({
@@ -38,13 +38,12 @@ app.use(helmet({
 }));
 
 
-// 6. PHỤC VỤ TỆP TĨNH (STATIC FILES)
-// 💡 Cấu hình phục vụ thư mục vật lý 'public' tại tiền tố URL là '/public'.
-// Điều này giúp hỗ trợ các đường dẫn HTML kiểu href="/public/css/..."
+
 app.use('/public', express.static('public'));
+app.use('/html', express.static(path.join(__dirname, 'public', 'html')));
 
 
-// 7. Hàm chuyển đổi file Buffer sang Base64 cho SendGrid
+
 function bufferToAttachment(buffer, filename) {
     return [
         {
@@ -56,28 +55,16 @@ function bufferToAttachment(buffer, filename) {
     ];
 }
 
-
-// ==========================================================
-// 8. ĐỊNH TUYẾN HTML (ROUTING)
-// PHẢI ĐẶT SAU express.static để tài nguyên tĩnh được tìm thấy trước.
-// ==========================================================
-
-// Trang chủ: GET /
 app.get('/', (req, res) => {
-    // Phục vụ index.html tại thư mục public
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Định tuyến cho các trang HTML khác (Ví dụ: /gioi-thieu, /sanpham)
-// Tuyến này sẽ xử lý các yêu cầu như GET /gioi-thieu
 app.get('/:pageName', (req, res) => {
     const page = req.params.pageName;
     const filePath = path.join(__dirname, 'public', `${page}.html`);
 
-    // Gửi file nếu tìm thấy, nếu không, trả về 404
     res.sendFile(filePath, (err) => {
         if (err) {
-            // Lỗi ENOENT = File Not Found
             if (err.code === 'ENOENT') {
                 res.status(404).send('Page not found');
             } else {
@@ -87,12 +74,6 @@ app.get('/:pageName', (req, res) => {
     });
 });
 
-
-// ==========================================================
-// 9. ENDPOINTS API (MAIL)
-// ==========================================================
-
-// --- ENDPOINT 1: /api/send-application (Ứng tuyển) ---
 app.post('/api/send-application', (req, res) => {
     upload(req, res, async (err) => {
         try {
@@ -233,7 +214,7 @@ app.post('/api/send-contact', async (req, res) => {
 });
 
 
-// 10. KHỞI ĐỘNG SERVER
+
 app.listen(PORT, () => {
     console.log(`Server đang chạy tại http://localhost:${PORT}.`);
     console.log(`Frontend: Truy cập trang chủ tại http://localhost:${PORT}/`);

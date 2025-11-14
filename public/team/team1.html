@@ -4,111 +4,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Thành viên - KCGAMES</title>
     <link rel="stylesheet" href="/public/team-css/team-1.css">
     <link rel="stylesheet" href="/public/css/header.css">
     <link rel="stylesheet" href="/public/css/footer.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
     <div id="header_home"></div>
-    <div id="main-content">
-        <div class="info">
-            
-        </div>
-        <div class="slider-wrapper">
-            <div class="slider-container">
-                <div class="slide active">
-                    <img src="/public/Image/backgound-tuyendung.png" alt="Ảnh 1">
-                </div>
-                <div class="slide">
-                    <img src="/public/Image/background-tuyendung1.jpg" alt="Ảnh 2">
-                </div>
-            </div>
 
-            <div class="slider-controls">
-                <span class="slide-number">01</span>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
+    <section id="section-thanhvien">
+        <h2>THÀNH VIÊN CỐT LÕI</h2>
+
+        <div class="carousel-wrapper">
+            <div class="member-track" tabindex="0">
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/avatar-trang-4.png" alt="Phạm Phi Long">
+                    </div>
+                    <div class="member-info">
+                        <h4>PHẠM PHI LONG</h4>
+                        <p>Co-founder/CEO</p>
+                    </div>
                 </div>
-                <span class="slide-number">02</span>
-                <button class="prev-btn">◀</button>
-                <button class="next-btn">▶</button>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/member_an.png" alt="Trần Hùng Phương An">
+                    </div>
+                    <div class="member-info">
+                        <h4>TRẦN HÙNG PHƯƠNG AN</h4>
+                        <p>Game Designer Lead</p>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/member_an.png" alt="Thành viên 3">
+                    </div>
+                    <div class="member-info">
+                        <h4>THÀNH VIÊN 3</h4>
+                        <p>Developer</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/member_an.png" alt="Thành viên 4">
+                    </div>
+                    <div class="member-info">
+                        <h4>THÀNH VIÊN 4</h4>
+                        <p>Artist</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/member_long.png" alt="Thành viên 5">
+                    </div>
+                    <div class="member-info">
+                        <h4>THÀNH VIÊN 5</h4>
+                        <p>Marketer</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/member_long.png" alt="Thành viên 6">
+                    </div>
+                    <div class="member-info">
+                        <h4>THÀNH VIÊN 6</h4>
+                        <p>Game Designer</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/member_an.png" alt="Thành viên 7">
+                    </div>
+                    <div class="member-info">
+                        <h4>THÀNH VIÊN 7</h4>
+                        <p>Developer</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/member_long.png" alt="Thành viên 8">
+                    </div>
+                    <div classs="member-info">
+                        <h4>THÀNH VIÊN 8</h4>
+                        <p>Lead</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/member_an.png" alt="Thành viên 9">
+                    </div>
+                    <div class="member-info">
+                        <h4>THÀNH VIÊN 9</h4>
+                        <p>QA</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="/public/Image/androi-e1721277717590.png" alt="Thành viên 10">
+                    </div>
+                    <div class="member-info">
+                        <h4>THÀNH VIÊN 10</h4>
+                        <p>UI/UX</p>
+                    </div>
+                </div>
+
+
             </div>
         </div>
-    </div>
+
+        <div class="carousel-controls">
+            <button class="prev-btn">
+                <i class='bx bx-chevron-left'></i>
+            </button>
+            <button class="next-btn">
+                <i class='bx bx-chevron-right'></i>
+            </button>
+        </div>
+    </section>
 
     <script src="/public/team-js/team1.js"></script>
+    <script>
+        // JS để load header/footer (Giữ nguyên logic của bạn)
+        // ... (Đặt các hàm initializeMobileMenu, setActiveNav, loadHTML, afterHeaderLoad ở đây)
+
+        // Ví dụ đơn giản hóa cho việc load header/footer (Hãy sử dụng code hoàn chỉnh của bạn)
+        function loadHTML(url, containerId, callback = () => { }) { /* ... code fetch ... */ }
+        function afterHeaderLoad() { /* ... code kích hoạt nav ... */ }
+
+        // Sửa đường dẫn fetch thành tương đối để hoạt động trên Server (dù Server là /public/team.html)
+        // Nếu file HTML hiện tại nằm trong /public/, thì phải dùng /html/client/...
+        loadHTML('/public/html/client/header.html', 'header_home', afterHeaderLoad);
+        loadHTML('/public/html/client/footer.html', 'footer_home');
+    </script>
+    <div id="footer_home"></div>
 </body>
-<script>
-    function initializeMobileMenu() {
-        const navbar = document.getElementById('navbar');
-        const mobileToggle = document.getElementById('mobile-toggle');
-
-        if (mobileToggle && navbar) {
-
-            const menuIcon = mobileToggle.querySelector('i');
-
-            mobileToggle.addEventListener('click', () => {
-                navbar.classList.toggle('active');
-
-                if (menuIcon) { // Kiểm tra nếu có icon Boxicons
-                    if (navbar.classList.contains('active')) {
-                        // Giả định Boxicons dùng bx-x cho đóng và bx-menu cho mở
-                        menuIcon.classList.remove('bx-menu');
-                        menuIcon.classList.add('bx-x');
-                    } else {
-                        menuIcon.classList.remove('bx-x');
-                        menuIcon.classList.add('bx-menu');
-                    }
-                }
-            });
-        }
-    }
-
-
-    function setActiveNav() {
-        const navLinkEls = document.querySelectorAll('#navbar li a'); // Lấy tất cả thẻ <a> trong navbar
-        const windowPathname = window.location.pathname;
-
-        navLinkEls.forEach(navLinkEl => {
-            const navLinkPathname = new URL(navLinkEl.href).pathname;
-            const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
-            const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
-
-            navLinkEl.classList.remove('active');
-            if (normalizedWindowPath === normalizedNavLinkPath) {
-                navLinkEl.classList.add('active');
-            }
-        });
-    }
-
-    async function loadHTML(url, containerId, callback = () => { }) {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
-            }
-            const htmlContent = await response.text();
-
-            document.getElementById(containerId).innerHTML = htmlContent;
-            callback();
-
-        } catch (error) {
-            console.error("Error loading HTML:", error);
-        }
-    }
-
-
-    function afterHeaderLoad() {
-        setActiveNav();
-        initializeMobileMenu();
-    }
-
-
-    loadHTML('../html/client/header.html', 'header_home', afterHeaderLoad);
-    loadHTML('../html/client/footer.html', 'footer_home');
-</script>
-<div id="footer_home"></div>
 
 </html>
