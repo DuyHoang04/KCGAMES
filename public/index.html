@@ -23,14 +23,14 @@
                 <div id="text_about">
                     <h2 style="text-align: left;">KCGAMES</h2>
                     <p> <strong>KCGAMES</strong> là một studio game mobile trẻ tuổi nhưng đầy tham vọng, với đội ngũ
-                        nhân
-                        viên tài năng và tâm huyết. Studio đang từng bước khẳng định vị thế của mình trên thị trường
-                        game mobile Việt
-                        Nam và vươn tầm ra thị trường quốc tế. Hãy cùng theo dõi và ủng hộ <strong>KCGAMES</strong> trên
-                        con
-                        đường chinh phục đam mê và tạo ra những trò chơi di động chất lượng cao, mang đến cho người chơi
-                        những trải
-                        nghiệm giải trí tuyệt vời nhất!</p>
+                        nhân viên tài năng và tâm huyết. Studio đang từng bước khẳng định vị thế của mình trên thị
+                        trường
+                        game mobile Việt Nam và vươn tầm ra thị trường quốc tế. Hãy cùng theo dõi và ủng hộ
+                        <strong>KCGAMES</strong> trên
+                        con đường chinh phục đam mê và tạo ra những trò chơi di động chất lượng cao, mang đến cho người
+                        chơi
+                        những trải nghiệm giải trí tuyệt vời nhất!
+                    </p>
                 </div>
                 <img src="/public/Image/1.png" alt="">
             </div>
@@ -154,10 +154,24 @@
             }
         }
 
+        function loadGTranslate() {
+            window.gtranslateSettings = {
+                "default_language": "vi",
+                "languages": ["vi", "en"],
+                "wrapper_selector": ".gtranslate_wrapper",
+                "detect_browser_language": true,
+            };
+
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://cdn.gtranslate.net/widgets/latest/float.js';
+            document.body.appendChild(script);
+        }
 
         function afterHeaderLoad() {
             setActiveNav();
             initializeMobileMenu();
+            loadGTranslate();
         }
 
 

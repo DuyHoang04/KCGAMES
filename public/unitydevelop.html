@@ -76,7 +76,8 @@
                     <br><br><br><br><br><br>
                     <div id="btn">
                         <div id="btn_back">
-                            <a href="/public/tuyendung.html"><i style="font-size: 42px;" class='bx bxs-chevrons-left'></i> </a>
+                            <a href="/public/tuyendung.html"><i style="font-size: 42px;"
+                                    class='bx bxs-chevrons-left'></i> </a>
                             <b style="padding-left: 10px;">Trở về trang tuyển dụng</b>
                         </div>
                         <div id="btn_open_form">
@@ -147,10 +148,24 @@
             }
         }
 
+        function loadGTranslate() {
+            window.gtranslateSettings = {
+                "default_language": "vi",
+                "languages": ["vi", "en"],
+                "wrapper_selector": ".gtranslate_wrapper",
+                "detect_browser_language": true,
+            };
+
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://cdn.gtranslate.net/widgets/latest/float.js';
+            document.body.appendChild(script);
+        }
 
         function afterHeaderLoad() {
             setActiveNav();
             initializeMobileMenu();
+            loadGTranslate();
         }
 
 
