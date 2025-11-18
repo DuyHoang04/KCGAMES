@@ -18,10 +18,9 @@
         <img id="main_page" src="/public/Image/draw-3583548_1280.png" alt="">
 
         <section id="about_we">
-
             <div id="main_about">
                 <div id="text_about">
-                    <h2 style="text-align: left;">KCGAMES</h2>
+                    <h2>KCGAMES</h2>
                     <p> <strong>KCGAMES</strong> là một studio game mobile trẻ tuổi nhưng đầy tham vọng, với đội ngũ
                         nhân viên tài năng và tâm huyết. Studio đang từng bước khẳng định vị thế của mình trên thị
                         trường
@@ -37,16 +36,16 @@
         </section>
 
         <section id="outstanding_product">
-            <h2> <strong style="color: #eb731a;">SẢN PHẨM</strong> NỔI BẬT</h2>
+            <h2> <strong>SẢN PHẨM</strong> NỔI BẬT</h2>
             <p>Tạo ra những trò chơi di động chất lượng cao, hấp dẫn và thu hút người chơi</p>
 
             <div id="main-product">
                 <div id="col-main-product">
                     <img src="/public/Image/icon-1-e1721271885124.png" alt="">
                     <div id="box_text">
-                        <li style="padding:10px 0  10px 0;"><a href=""></a> Ten Game</li>
-                        <img style="width: 100px;height: 40px;" src="/public/Image/androi-e1721277717590.png" alt="">
-                        <p style="padding-top: 10px;">Ra mắt game mới với nhiều chức năng mới mẻ và thú vị</p>
+                        <li><a href=""></a> Ten Game</li>
+                        <img  src="/public/Image/androi-e1721277717590.png" alt="">
+                        <p>Ra mắt game mới với nhiều chức năng mới mẻ và thú vị</p>
                     </div>
                 </div>
                 <div id="col-demo">
@@ -95,89 +94,7 @@
     </div>
 
 
-    <script>
-        function initializeMobileMenu() {
-            const navbar = document.getElementById('navbar');
-            const mobileToggle = document.getElementById('mobile-toggle');
-
-            if (mobileToggle && navbar) {
-
-                const menuIcon = mobileToggle.querySelector('i');
-
-                mobileToggle.addEventListener('click', () => {
-                    navbar.classList.toggle('active');
-
-                    if (menuIcon) { // Kiểm tra nếu có icon Boxicons
-                        if (navbar.classList.contains('active')) {
-                            // Giả định Boxicons dùng bx-x cho đóng và bx-menu cho mở
-                            menuIcon.classList.remove('bx-menu');
-                            menuIcon.classList.add('bx-x');
-                        } else {
-                            menuIcon.classList.remove('bx-x');
-                            menuIcon.classList.add('bx-menu');
-                        }
-                    }
-                });
-            }
-        }
-
-
-        function setActiveNav() {
-            const navLinkEls = document.querySelectorAll('#navbar li a'); // Lấy tất cả thẻ <a> trong navbar
-            const windowPathname = window.location.pathname;
-
-            navLinkEls.forEach(navLinkEl => {
-                const navLinkPathname = new URL(navLinkEl.href).pathname;
-                const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
-                const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
-
-                navLinkEl.classList.remove('active');
-                if (normalizedWindowPath === normalizedNavLinkPath) {
-                    navLinkEl.classList.add('active');
-                }
-            });
-        }
-
-        async function loadHTML(url, containerId, callback = () => { }) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
-                }
-                const htmlContent = await response.text();
-
-                document.getElementById(containerId).innerHTML = htmlContent;
-                callback();
-
-            } catch (error) {
-                console.error("Error loading HTML:", error);
-            }
-        }
-
-        function loadGTranslate() {
-            window.gtranslateSettings = {
-                "default_language": "vi",
-                "languages": ["vi", "en"],
-                "wrapper_selector": ".gtranslate_wrapper",
-                "detect_browser_language": true,
-            };
-
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'https://cdn.gtranslate.net/widgets/latest/float.js';
-            document.body.appendChild(script);
-        }
-
-        function afterHeaderLoad() {
-            setActiveNav();
-            initializeMobileMenu();
-            loadGTranslate();
-        }
-
-
-        loadHTML('./html/client/header.html', 'header_home', afterHeaderLoad);
-        loadHTML('./html/client/footer.html', 'footer_home');
-    </script>
+    <script src="/public/js/index.js"></script>
     <div id="footer_home"></div>
 </body>
 

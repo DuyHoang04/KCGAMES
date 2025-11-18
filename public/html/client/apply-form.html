@@ -30,12 +30,10 @@
                         tuyển:</label>
                     <select id="jobPositionSelect" name="job_position" required>
                         <option value="" disabled selected>-- Chọn vị trí --</option>
-                        <option value="Game Design (Freshers - Junior)">𝐆𝐚𝐦𝐞
-                            𝐃𝐞𝐬𝐢𝐠𝐧𝐞(𝐅𝐫𝐞𝐬𝐡𝐞𝐫-𝐉𝐮𝐧𝐢𝐨𝐫)</option>
-                        <option value="Unity Developer">𝐔𝐧𝐢𝐭𝐲 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫 (𝐉𝐮𝐧𝐢𝐨𝐫-𝐒𝐞𝐧𝐢𝐨𝐫)
-                        </option>
-                        <option value="Backend Developer">𝐁𝐚𝐜𝐤𝐞𝐧𝐝 (𝐉𝐮𝐧𝐢𝐨𝐫-𝐒𝐞𝐧𝐢𝐨𝐫)</option>
-                        <option value="Marketing Game">𝐌𝐚𝐫𝐤𝐞𝐭𝐢𝐧𝐠 𝐆𝐚𝐦𝐞</option>
+                        <option value="Game Design (Freshers - Junior)">Game Designe (Fresher - Junior)</option>
+                        <option value="Unity Developer">Unity Developer (Junior - Senior)</option>
+                        <option value="Backend Developer">Backend (Junior - Senior)</option>
+                        <option value="Marketing Game">Marketing Game</option>
                         <option value="Khác">Vị trí khác (Vui lòng ghi chú)</option>
                     </select>
                 </div>
@@ -55,171 +53,7 @@
             </form>
         </div>
     </div>
-
-    <script>
-
-
-        function initializeMobileMenu() {
-            const navbar = document.getElementById('navbar');
-            const mobileToggle = document.getElementById('mobile-toggle');
-
-            // Kiểm tra chắc chắn các phần tử tồn tại sau khi header được tải
-            if (!mobileToggle || !navbar) {
-                console.warn("CẢNH BÁO: Không tìm thấy #navbar hoặc #mobile-toggle. Menu di động không hoạt động.");
-                return;
-            }
-
-            const menuIcon = mobileToggle.querySelector('i');
-
-            mobileToggle.addEventListener('click', () => {
-                navbar.classList.toggle('active');
-
-                // Đảm bảo icon chỉ được đổi khi menuIcon tồn tại
-                if (menuIcon) {
-                    if (navbar.classList.contains('active')) {
-                        menuIcon.classList.remove('fa-bars');
-                        menuIcon.classList.add('fa-times');
-                    } else {
-                        menuIcon.classList.remove('fa-times');
-                        menuIcon.classList.add('fa-bars');
-                    }
-                }
-            });
-        }
-
-        /**
-         * Thiết lập class 'active' cho liên kết điều hướng tương ứng với trang hiện tại.
-         */
-        function setActiveNav() {
-            const navLinkEls = document.querySelectorAll('.nav_link');
-            const windowPathname = window.location.pathname;
-
-            navLinkEls.forEach(navLinkEl => {
-                try {
-                    // Tạo URL mới để lấy pathname chuẩn xác
-                    const navLinkPathname = new URL(navLinkEl.href).pathname;
-
-                    // Chuẩn hóa đường dẫn cho trang chủ
-                    const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
-                    const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
-
-                    // Xóa lớp 'active' trước khi kiểm tra
-                    navLinkEl.classList.remove('active');
-
-                    // So sánh và thêm lớp 'active'
-                    if (normalizedWindowPath === normalizedNavLinkPath) {
-                        navLinkEl.classList.add('active');
-                    }
-                } catch (e) {
-                    console.warn("LỖI XỬ LÝ LIÊN KẾT: Một liên kết điều hướng có href không hợp lệ.", navLinkEl);
-                }
-            });
-        }
-
-        async function loadHTML(url, containerId, callback = null) {
-            try {
-                const container = document.getElementById(containerId);
-                if (!container) {
-                    console.error(`LỖI KHÔNG TÌM THẤY: Container với ID '${containerId}' không tồn tại.`);
-                    return;
-                }
-
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch ${url} (Mã: ${response.status} - ${response.statusText})`);
-                }
-
-                const htmlContent = await response.text();
-                container.innerHTML = htmlContent;
-
-                if (callback) {
-                    callback();
-                }
-
-            } catch (error) {
-                console.error(`❌ Error loading HTML từ ${url}:`, error);
-            }
-        }
-
-        function loadGTranslate() {
-            window.gtranslateSettings = {
-                "default_language": "vi",
-                "languages": ["vi", "en"],
-                "wrapper_selector": ".gtranslate_wrapper",
-                "detect_browser_language": true,
-            };
-
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'https://cdn.gtranslate.net/widgets/latest/float.js';
-            document.body.appendChild(script);
-        }
-
-        function afterHeaderLoad() {
-            setActiveNav();
-            initializeMobileMenu();
-            loadGTranslate();
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadHTML('./header.html', 'header_apply_form', afterHeaderLoad);
-            loadHTML('./footer.html', 'footer_apply_form');
-
-            const form = document.getElementById('form_apply');
-            const submitButton = document.querySelector('#btn_send');
-            const SERVER_ENDPOINT = "/api/send-application";
-
-            if (!form) {
-                console.error("LỖI KHÔNG TÌM THẤY: Form với ID 'form_apply' không tồn tại. Bỏ qua xử lý form.");
-                return;
-            }
-
-            if (!submitButton) {
-                console.error("LỖI KHÔNG TÌM THẤY: Button với ID 'btn_send' không tồn tại. Bỏ qua xử lý form.");
-                return;
-            }
-
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const formData = new FormData(form);
-
-                submitButton.disabled = true;
-                submitButton.textContent = 'Đang gửi...';
-
-                fetch(SERVER_ENDPOINT, {
-                    method: 'POST',
-                    body: formData
-                })
-                    .then(async response => {
-                        let data = {};
-                        try {
-                            data = await response.json();
-                        } catch (e) {
-                            console.warn("Phản hồi không phải JSON hợp lệ:", await response.text());
-                        }
-
-                        if (response.ok) {
-                            return { status: response.status, ok: response.ok, data: data };
-                        } else {
-                            throw new Error(data.message || `Lỗi không xác định (Mã: ${response.status})`);
-                        }
-                    })
-                    .then(({ data }) => {
-                        alert('✅ Đơn ứng tuyển đã được gửi thành công! Vui lòng kiểm tra email của bạn để nhận thư xác nhận.');
-                        form.reset();
-                    })
-                    .catch(error => {
-                        console.error('Lỗi gửi đơn:', error);
-                        alert(`❌ Gửi đơn không thành công. Chi tiết lỗi: ${error.message}`);
-                    })
-                    .finally(() => {
-                        submitButton.disabled = false;
-                        submitButton.textContent = 'GỬI ĐƠN ỨNG TUYỂN';
-                    });
-            });
-        });
-    </script>
+    <script src="/public/js/apply.js"></script>
     <div id="footer_apply_form"></div>
 
 </body>

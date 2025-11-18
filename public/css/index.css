@@ -70,6 +70,10 @@ img {
     max-width: 600px;
 }
 
+#text_about h2 {
+    text-align: left;
+}
+
 #main_about p {
     text-align: justify;
     line-height: 1.6;
@@ -88,6 +92,10 @@ img {
     padding: 50px 20px;
     justify-content: center;
     width: 100%;
+}
+
+#outstanding_product h2 strong {
+    color: #eb731a;
 }
 
 #outstanding_product h2 {
@@ -137,12 +145,17 @@ img {
 #box_text li {
     font-size: 24px;
     font-weight: 600;
-    padding: 10px 0;
+    padding: 10px 0 10px 0;
+}
+
+#box_text img {
+    width: 100px;
+    height: 40px;
 }
 
 #box_text p {
     font-size: 16px;
-    padding: 0 10px 0 0;
+    padding: 10px 10px 0 0;
     text-align: left;
 }
 
