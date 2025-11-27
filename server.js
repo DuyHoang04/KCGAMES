@@ -279,7 +279,7 @@ app.post('/api/send-application', apiLimiter, (req, res) => {
 
             await sgMail.send(confirmationMail);
 
-            res.status(200).json({ success: true, message: 'Đơn ứng tuyển và email xác nhận đã gửi thành công.' });
+            res.status(200).json({ success: true, message: 'Đơn ứng tuyển và email xác nhận đã gửi thành công. Nhớ kiểm tra Thư mục Thùng Rác, rất có thể mail phản hồi của chúng tôi ở trong đó' });
 
         } catch (error) {
             return next(error);
