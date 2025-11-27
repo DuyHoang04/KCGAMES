@@ -120,6 +120,14 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/app-ads.txt', (req, res) => {
+    const filePath = path.join(__dirname, 'app-ads.txt');
+    res.sendFile(filePath);
+});
+
+
+
+
 // app.use('/public', express.static('public'));
 // // app.use('/html', express.static(path.join(__dirname, 'public', 'html')));app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/public/css', express.static(path.join(__dirname, 'public', 'css')));
