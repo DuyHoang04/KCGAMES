@@ -354,6 +354,19 @@ app.use((err, req, res, next) => {
         });
     }
 });
+
+function getNetworkIP() {
+    const interfaces = os.networkInterfaces();
+    for (const name of Object.keys(interfaces)) {
+        for (const interface of interfaces[name]) {
+            if (interface.family === 'IPv4' && !interface.internal) {
+                return interface.address;
+            }
+        }
+    }
+    return 'localhost';
+}
+
 function getServerInfo() {
     const isProduction = process.env.NODE_ENV === 'production';
     const networkIP = getNetworkIP();
