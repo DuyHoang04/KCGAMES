@@ -366,3 +366,15 @@ img {
         margin: 10px 0;
     }
 }
+
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s cubic-bezier(.15,.75,.35,1);
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

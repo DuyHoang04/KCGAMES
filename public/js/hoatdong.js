@@ -52,6 +52,68 @@ async function loadHTML(url, containerId, callback = () => { }) {
     }
 }
 
+async function loadActivities() {
+    try {
+        const res = await fetch("/public/data/hoatdong.json");
+        if (!res.ok) throw new Error("Không load được hoatdong.json");
+        const data = await res.json();
+
+        // sort: mới nhất lên trước
+        data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        const container = document.getElementById("activity-list");
+
+        container.innerHTML = data.map(item => {
+            const dateStr = new Date(item.date).toLocaleDateString("vi-VN");
+            return `
+                <article class="activity-item scroll-reveal" data-id="${item.id}">
+                    <div class="activity-thumb">
+                        <img src="${item.image}" alt="${item.title}">
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-meta">${dateStr}</div>
+                        <h2 class="activity-title">${item.title}</h2>
+                        <p class="activity-desc">${item.shortDescription}</p>
+                        <span class="activity-readmore">
+                            Xem chi tiết
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </span>
+                    </div>
+                </article>
+            `;
+        }).join("");
+
+        // click -> sang trang chi tiết
+        document.querySelectorAll(".activity-item").forEach(card => {
+            card.addEventListener("click", () => {
+                const id = card.getAttribute("data-id");
+                window.location.href = `/public/activities/detail.html?id=${encodeURIComponent(id)}`;
+            });
+        });
+
+        initScrollReveal();
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+function initScrollReveal() {
+    const elements = document.querySelectorAll(".scroll-reveal");
+    const reveal = () => {
+        const trigger = window.innerHeight * 0.85;
+        elements.forEach(el => {
+            const rectTop = el.getBoundingClientRect().top;
+            if (rectTop < trigger) el.classList.add("active");
+        });
+    };
+
+    window.addEventListener("scroll", reveal);
+    reveal();
+}
+
+document.addEventListener("DOMContentLoaded", loadActivities);
+
+
 function loadGTranslate() {
     window.gtranslateSettings = {
         "default_language": "vi",

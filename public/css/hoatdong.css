@@ -1,4 +1,4 @@
-body {
+/* body {
     background-color: #F8F9FA;
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -188,4 +188,178 @@ body {
     }
 }
 
+ */
 
+ /* GLOBAL */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8F9FA;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Banner */
+#main_page {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Wrapper */
+#wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+/* Header text */
+#text-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+#text-header h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #2C3E50;
+    font-weight: 700;
+}
+
+#text-header p {
+    font-size: 1.05rem;
+    color: #7F8C8D;
+    line-height: 1.7;
+}
+
+/* Activity list (layout B - kiểu blog, hình trái, text phải) */
+#activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Mỗi item */
+.activity-item {
+    display: grid;
+    grid-template-columns: minmax(260px, 340px) 1fr;
+    gap: 24px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+}
+
+.activity-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+}
+
+/* Thumbnail */
+.activity-thumb {
+    width: 100%;
+    height: 100%;
+    max-height: 260px;
+    overflow: hidden;
+}
+
+.activity-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Content */
+.activity-content {
+    padding: 18px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.activity-meta {
+    font-size: 0.85rem;
+    color: #95A5A6;
+    margin-bottom: 6px;
+}
+
+.activity-title {
+    font-size: 1.4rem;
+    margin: 0 0 10px;
+    color: #2C3E50;
+    font-weight: 600;
+}
+
+.activity-desc {
+    margin: 0 0 10px;
+    font-size: 0.98rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.activity-readmore {
+    margin-top: auto;
+    font-size: 0.95rem;
+    color: #EB731A;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+}
+
+.activity-readmore i {
+    font-size: 1.1rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    #text-header h1 {
+        font-size: 2.4rem;
+    }
+
+    .activity-item {
+        grid-template-columns: minmax(240px, 320px) 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    #main_page {
+        max-height: 260px;
+    }
+
+    #wrapper {
+        padding: 30px 15px 60px;
+    }
+
+    #text-header h1 {
+        font-size: 2rem;
+    }
+
+    #text-header p {
+        font-size: 0.98rem;
+    }
+
+    .activity-item {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-thumb {
+        max-height: 220px;
+    }
+}
+
+/* Scroll reveal */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s cubic-bezier(.15,.75,.35,1);
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

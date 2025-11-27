@@ -52,6 +52,21 @@ async function loadHTML(url, containerId, callback = () => { }) {
         console.error("Error loading HTML:", error);
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".scroll-reveal");
+
+    const reveal = () => {
+        const trigger = window.innerHeight * 0.55;
+
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect().top;
+            if (rect < trigger) el.classList.add("active");
+        });
+    };
+
+    window.addEventListener("scroll", reveal);
+    reveal();
+});
 
 function loadGTranslate() {
     window.gtranslateSettings = {

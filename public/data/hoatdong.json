@@ -1,0 +1,46 @@
+[
+  {
+    "id": "khoanh-khac-lam-viec",
+    "title": "Khoảnh khắc làm việc tại KCGAMES",
+    "image": "/public/Image/Hoatdong/ChupAnhCty/backgrond.jpg",
+    "date": "2025-11-12",
+    "shortDescription": "Hành trình gắn kết tập thể KCGAMES với các hoạt động ngoài trời đầy năng lượng.",
+    "content": "Những khoảnh khắc thường ngày tại phòng làm việc của KCGAMES, nơi các thành viên tập trung sáng tạo và phát triển những sản phẩm game chất lượng. Không gian làm việc được thiết kế hiện đại, thoải mái, giúp đội ngũ duy trì tinh thần hứng khởi và hiệu quả trong suốt quá trình tạo ra các dự án mới.",
+    "gallery": [
+      "/public/Image/Hoatdong/ChupAnhCty/Dev.jpg",
+      "/public/Image/Hoatdong/ChupAnhCty/Art.jpg",
+      "/public/Image/Hoatdong/ChupAnhCty/NgoiTrong 1.jpg",
+      "/public/Image/Hoatdong/ChupAnhCty/NgoiNgoai.jpg",
+      "/public/Image/Hoatdong/ChupAnhCty/NgoiTrong 2.jpg",
+      "/public/Image/Hoatdong/ChupAnhCty/AKen.jpg"
+    ]
+  },
+  {
+    "id": "Men Day 19-11",
+    "title": "International Men's Day",
+    "image": "/public/Image/Hoatdong/MenDay/Tapthe.png",
+    "date": "2025-11-19",
+    "shortDescription": "🐥 CHÚC MỪNG NGÀY ĐÀN ÔNG QUỐC TẾ 19/11! 💪",
+    "content": "🐥 CHÚC MỪNG NGÀY ĐÀN ÔNG QUỐC TẾ 19/11! 💪 Hôm nay, KCGames Studio xin gửi lời tri ân chân thành nhất đến tất cả những người đàn ông tuyệt vời, những 'Player 1' của cuộc đời mình! 👖 KCGames Studio tự hào có những 'chiến binh' vừa tài năng vừa vui tính trong đội ngũ, và một cộng đồng game thủ siêu chất lượng!👏 Tất cả các bạn đều xứng đáng nhận được một lời chúc thật hoành tráng! Chúc anh em 19/11 vui vẻ, sức khỏe, và quan trọng nhất là 'loot' được thật nhiều đồ xịn trong cuộc sống!",
+    "gallery": [
+      "/public/Image/Hoatdong/MenDay/NgaLoc.png",
+      "/public/Image/Hoatdong/MenDay/HiepDuong.png",
+      "/public/Image/Hoatdong/MenDay/Qua.png"
+    ]
+  },
+    {
+    "id": "Sinh nhật thuyền trưởng",
+    "title": "Sinh nhật thuyền trưởng",
+    "image": "/public/Image/Hoatdong/SNSep/AnhALong.png",
+    "date": "2025-11-20",
+    "shortDescription": "Chúc mừng sinh nhật 'Thuyền trưởng' của KCGames Studio!",
+    "content": "Chúc mừng sinh nhật 'Thuyền trưởng' của KCGames Studio! Cảm ơn Sếp, một người thầy luôn kiên nhẫn chỉ bảo tụi em từng bài học nhỏ, và là vị thuyền trưởng bản lĩnh chèo lái con tàu này vượt qua mọi sóng gió. Tuổi mới, chúc Sếp luôn giữ vững phong độ, sức khỏe dồi dào để tiếp tục đưa team mình  và chinh phục những cột mốc mới. Tụi em luôn sẵn sàng làm thủy thủ đoàn tin cậy phía sau! Happy Birthday Sếp ❤️❤️❤️",
+    "gallery": [
+      "/public/Image/Hoatdong/SNSep/TapThe.png",
+      "/public/Image/Hoatdong/SNSep/Chucmung.png",
+      "/public/Image/Hoatdong/SNSep/CatBanh.png",
+      "/public/Image/Hoatdong/SNSep/Qua.png"
+    ]
+  }
+  
+]

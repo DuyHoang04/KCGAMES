@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết hoạt động - KCGAMES</title>
+    <link rel="icon" type="image/png" href="/public/Image/logo-Photoroom.png">
+
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/activity-detail.css">
+    <link rel="stylesheet" href="/public/css/footer.css">
+
+    <script src="/public/js/header.js" defer></script>
+    <script src="/public/js/activity-detail.js" defer></script>
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="header_hoatdong"></div>
+
+    <main id="detail-wrapper">
+        <section id="detail-header" class="scroll-reveal">
+            <p id="detail-date" class="detail-date"></p>
+            <h1 id="detail-title"></h1>
+        </section>
+
+        <section id="detail-main" class="scroll-reveal">
+            <div id="detail-cover" class="detail-cover">
+                <img id="detail-cover-img" src="" alt="">
+            </div>
+            <article id="detail-content" class="detail-content"></article>
+        </section>
+
+        <section id="detail-gallery-section" class="scroll-reveal">
+            <h2>Hình ảnh hoạt động</h2>
+            <div id="detail-gallery" class="detail-gallery">
+            </div>
+        </section>
+        <section id="detail-navigation" class="scroll-reveal">
+    <button id="prev-activity" class="nav-btn"><i class='bx bx-chevron-left'></i> Hoạt động trước</button>
+    <button id="next-activity" class="nav-btn">Hoạt động tiếp theo <i class='bx bx-chevron-right'></i></button>
+</section>
+
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-inner">
+            <span id="lightbox-close" class="lightbox-close">&times;</span>
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+
+    <div id="footer_hoatdong"></div>
+</body>
+
+</html>
