@@ -114,8 +114,12 @@ app.use(
 
 
 
-app.use('/public', express.static('public'));
-app.use('/html', express.static(path.join(__dirname, 'public', 'html')));
+// app.use('/public', express.static('public'));
+// app.use('/html', express.static(path.join(__dirname, 'public', 'html')));app.use(express.static(path.join(__dirname, 'public')));
+app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
+app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
+app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
+app.use('/activities', express.static(path.join(__dirname, 'public', 'activities')));
 
 function bufferToAttachment(buffer, filename) {
     return [
