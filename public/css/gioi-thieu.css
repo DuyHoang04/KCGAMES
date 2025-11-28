@@ -1,7 +1,7 @@
 /* GLOBAL */
 body {
     margin: 0;
-    padding: 0;
+    padding-top: 100px;
     background: var(--page-bg);
     font-family: "Poppins", sans-serif;
 }
@@ -14,7 +14,6 @@ body {
     height: auto;
     display: block;
     object-fit: cover;
-    padding-top: 50px;
 }
 
 /* -----------------------------------------
@@ -218,6 +217,7 @@ body {
     #col-inner {
         width: 45%;
     }
+  
 
     #section-content p[style] {
         font-size: 32px !important;
@@ -245,9 +245,7 @@ body {
     #col-inner {
         width: 90%;
     }
-    #main_page {
-        margin-top: 90px;       
-    }
+
 
     #col-inner {
         width: 90%;

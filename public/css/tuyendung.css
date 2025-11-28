@@ -36,7 +36,7 @@ p {
     align-items: center;
     justify-items: center;
     height: auto;
-    margin-top: 150px;
+    margin-top: 50px;
     padding: 0 var(--padding-desktop);
 }
 
@@ -243,10 +243,7 @@ p {
 }
 
 @media only screen and (max-width: 1024px) {
-    #main_page {
-        height: 300px;
-        margin-top: 120px;
-    }
+
 
     #textbox-right,
     #textbox-left {
@@ -296,17 +293,14 @@ p {
 
 
 @media only screen and (max-width: 768px) {
-    #main_page {
-        height: 200px;
-        margin-top: 100px;
-    }
+    
 
     #text-head-tuyendung h2 {
         font-size: 2rem;
     }
 
     #section-tuyendung {
-        padding: 100px 0  10px 0;
+        padding: 30px 0  10px 0;
     }
 
     .game-card {

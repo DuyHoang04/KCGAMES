@@ -1,55 +1,76 @@
+let headerInitialized = false;
 
-function initializeMobileMenu() {
-    const navbar = document.getElementById('navbar');
-    const mobileToggle = document.getElementById('mobile-toggle');
-
-    if (mobileToggle && navbar) {
-        const menuIcon = mobileToggle.querySelector('i');
-
-        mobileToggle.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-
-            if (navbar.classList.contains('active')) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            } else {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
-        });
-    }
-}
-
+// Highlight menu theo URL hiện tại
 function setActiveNav() {
     const navLinkEls = document.querySelectorAll('.nav_link');
     const windowPathname = window.location.pathname;
 
     navLinkEls.forEach(navLinkEl => {
         const navLinkPathname = new URL(navLinkEl.href).pathname;
-        const normalizedWindowPath = (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
-        const normalizedNavLinkPath = (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
+
+        const normalizedWindowPath =
+            (windowPathname === '/index.html' || windowPathname === '') ? '/' : windowPathname;
+
+        const normalizedNavLinkPath =
+            (navLinkPathname === '/index.index' || navLinkPathname === '/index.html') ? '/' : navLinkPathname;
 
         navLinkEl.classList.remove('active');
+
         if (normalizedWindowPath === normalizedNavLinkPath) {
             navLinkEl.classList.add('active');
         }
     });
 }
-document.addEventListener('DOMContentLoaded', function () {
+
+// Hàm khởi tạo header – gọi được nhiều lần (sau khi load HTML xong)
+function initHeader() {
+    const header = document.getElementById('header');
     const navbar = document.getElementById('navbar');
     const mobileToggle = document.getElementById('mobile-toggle');
-    const menuIcon = mobileToggle.querySelector('i');
+    const menuIcon = mobileToggle ? mobileToggle.querySelector('i') : null;
 
-    if (mobileToggle && navbar) {
-        mobileToggle.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            if (navbar.classList.contains('active')) {
-                menuIcon.classList.remove('bx-menu');
-                menuIcon.classList.add('bx-x');
+    if (!header) return;
+
+    // 1. Đẩy toàn bộ body xuống đúng bằng chiều cao header
+    function updateBodyOffset() {
+        document.body.style.paddingTop = header.offsetHeight + 'px';
+    }
+    updateBodyOffset();
+    window.addEventListener('resize', updateBodyOffset);
+
+    // 2. Chỉ gắn listener scroll + mobile menu 1 lần
+    if (!headerInitialized) {
+        // Blur + đổi nền khi scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
             } else {
-                menuIcon.classList.remove('bx-x');
-                menuIcon.classList.add('bx-menu');
+                header.classList.remove('scrolled');
             }
         });
+
+        // Mobile menu
+        if (mobileToggle && navbar && menuIcon) {
+            mobileToggle.addEventListener('click', () => {
+                navbar.classList.toggle('active');
+
+                if (navbar.classList.contains('active')) {
+                    menuIcon.classList.remove('bx-menu');
+                    menuIcon.classList.add('bx-x');
+                } else {
+                    menuIcon.classList.remove('bx-x');
+                    menuIcon.classList.add('bx-menu');
+                }
+            });
+        }
+
+        headerInitialized = true;
     }
-});
+
+    // 3. Active nav
+    setActiveNav();
+}
+
+// Nếu trang nào KHÔNG dùng loadHTML mà nhét header trực tiếp,
+// thì vẫn khởi tạo được nhờ sự kiện này.
+document.addEventListener('DOMContentLoaded', initHeader);

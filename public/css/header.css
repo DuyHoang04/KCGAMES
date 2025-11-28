@@ -7,6 +7,7 @@
     font-family: 'Roboto', sans-serif !important;
 }
 
+/* HEADER CHUNG */
 #header {
     width: 100%;
     height: 100px;
@@ -14,14 +15,26 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 80px;
+
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
-    position: fixed;
+
+    position: fixed;      /* luôn dính trên cùng */
     top: 0;
     left: 0;
     z-index: 1000;
+
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Khi kéo xuống */
+#header.scrolled {
+    background: rgba(255, 255, 255, 0.808);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo */
 .logo {
     width: 100px;
     height: 100px;
@@ -34,17 +47,27 @@
     margin: 0;
 }
 
+/* Menu desktop */
+#menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+#gt_float_wrapper {
+  position: fixed !important;
+    top: 110px !important;   /* ngay bên dưới header */
+    right: 20px !important;   /* cách bên trái 20px */
+    left: auto !important;
+    z-index: 900 !important;
+}
+
 #navbar {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: nowrap;
-}
+    padding-right: 70px;
 
-#menu {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
 }
 
 #navbar li {
@@ -64,7 +87,7 @@
 
 #navbar li a:hover,
 #navbar li a.active {
-    color: black;
+    color: #000;
     font-weight: 700;
 }
 
@@ -79,47 +102,27 @@
     left: 20px;
 }
 
+/* Nút toggle mobile */
 #mobile-toggle {
     display: none;
 }
 
+/* ====== ≤ 1200px ====== */
 @media only screen and (max-width: 1200px) {
     #header {
         padding: 20px 50px;
-
     }
 
     #navbar li {
         padding: 0 15px;
     }
-
-
-    #about_we {
-        padding: 60px 50px;
-    }
-
-    #main_about img {
-        max-width: 450px;
-        height: auto;
-    }
-
-    #main-product {
-        gap: 40px;
-    }
-
-    #col-inner-hoatdong {
-        width: 280px;
-    }
 }
 
+/* ====== ≤ 1024px (tablet) ====== */
 @media only screen and (max-width: 1024px) {
     #header {
         height: 120px;
         padding: 20px 40px;
-    }
-
-    .wrapper {
-        padding-top: 120px;
     }
 
     #navbar li {
@@ -134,61 +137,16 @@
     #navbar li a:hover::after {
         left: 8px;
     }
-
-    #about_we {
-        padding: 40px 40px;
-    }
-
-    #main_about {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    #main_about img {
-        max-width: 80%;
-        order: -1;
-    }
-
-    #text_about {
-        min-width: auto;
-    }
-
-    #main-product {
-        flex-direction: column;
-        gap: 50px;
-    }
-
-    #col-main-product,
-    #col-demo {
-        text-align: center;
-        width: 100%;
-    }
-
-    #col-demo {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    #section-hoatdong {
-        padding: 40px 40px;
-    }
-
-    #col-inner-hoatdong {
-        width: 45%;
-    }
 }
 
+/* ====== ≤ 768px (mobile) ====== */
 @media only screen and (max-width: 768px) {
-
 
     body,
     html {
         overflow-x: hidden;
         width: 100%;
         max-width: 100%;
-        margin: 0;
-        padding: 0;
     }
 
     .logo {
@@ -204,19 +162,6 @@
         padding: 20px 40px;
         height: 100px;
         width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background: #fff;
-        z-index: 1000;
-    }
-
-    .wrapper {
-        padding-top: 100px;
-    }
-
-    section {
-        padding: 30px 20px;
     }
 
     #mobile-toggle {
@@ -232,20 +177,21 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
+
         position: fixed;
-        top: 100px;
+        top: 100px; /* bằng chiều cao header mobile */
         right: -100%;
+
         width: 80%;
         max-width: 300px;
         height: calc(100vh - 100px);
+
         background-color: #fff;
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
         padding: 30px 0 0 30px;
         transition: all 0.35s ease;
         z-index: 1050;
-
     }
-
 
     #navbar.active {
         right: 0;
@@ -266,20 +212,5 @@
 
     #navbar li a::after {
         display: none;
-    }
-
-    #main_about img {
-        max-width: 100%;
-    }
-
-    #col-inner-hoatdong {
-        width: 100%;
-    }
-
-    .wrapper,
-    section {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
     }
 }

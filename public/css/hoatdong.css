@@ -14,7 +14,7 @@ body {
     height: auto;
     display: block;
     object-fit: cover;
-    padding-top: 50px;
+
 }
 
 /* Wrapper */
@@ -135,13 +135,11 @@ body {
     .activity-item {
         grid-template-columns: minmax(240px, 320px) 1fr;
     }
+   
 }
 
 @media (max-width: 768px) {
-    #main_page {
-        max-height: 260px;
-        margin-top: 90px;
-    }
+    
 
     #wrapper {
         padding: 30px 15px 60px;
